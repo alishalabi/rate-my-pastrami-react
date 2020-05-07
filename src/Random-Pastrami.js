@@ -17,12 +17,25 @@ class RandomPastrami extends Component {
   }
 
   handleSubmit(e) {
-    e.preventDefault
+    e.preventDefault()
     this.apiWrapper.getRandom().then((json) => {
       this.setState({name: json.name, rating: json.rating})
     })
     console.log(this.state)
   }
 
+  renderRandomPastrami() {
+    if (this.state.name === null) {
+      return undefined
+    }
+    const {name, rating} = this.state
+
+    return (
+      <div>
+        <div>Name: {name}</div>
+        <div>Rating: {rating}</div>
+      </div>
+    )
+  }
 
 }
