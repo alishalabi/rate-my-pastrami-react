@@ -1,7 +1,8 @@
-require('dotenv').config();
 import React, { Component } from 'react'
+import ApiWrapper from 'yelp-api-wrapper'
+require('dotenv').config();
 
-const ApiWrapper = require('../../yelp-api-wrapper/yelp-wrapper.js')
+// const ApiWrapper = require('../../yelp-api-wrapper/yelp-wrapper.js')
 
 // const test = new ApiWrapper(process.env.API_KEY, "pizza", "94117")
 // console.log(test)
@@ -13,15 +14,13 @@ class RandomPastrami extends Component {
       name: null,
       rating: null
     }
-    this.apiWrapper = new ApiWrapper(process.env.API_KEY, "pastrami", "94117")
   }
 
   handleSubmit(e) {
     e.preventDefault()
-    this.apiWrapper.getRandom().then((json) => {
+    fetch("localhost:8000/random-pastrami/94117").then((json) => {
       this.setState({name: json.name, rating: json.rating})
     })
-    console.log(this.state)
   }
 
   renderRandomPastrami() {
@@ -38,4 +37,14 @@ class RandomPastrami extends Component {
     )
   }
 
+  render() {
+    return (
+      <div className="random-pastrami">
+        <button onClick={e => this.handleSubmit(e)}>Get Random</button>
+        {this.renderRandomPastrami()}
+      </div>
+    )
+  }
 }
+
+export default RandomPastrami;
