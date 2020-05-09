@@ -18,9 +18,11 @@ class RandomPastrami extends Component {
 
   handleSubmit(e) {
     e.preventDefault()
-    fetch("localhost:8000/random-pastrami/94117").then((json) => {
-      this.setState({name: json.name, rating: json.rating})
-    })
+    fetch('http://localhost:4000/random-pastrami/94117')
+      .then(res => res.json())
+      .then((json) => {
+        this.setState({name: json.name, rating: json.rating})
+      })
   }
 
   renderRandomPastrami() {
@@ -40,7 +42,7 @@ class RandomPastrami extends Component {
   render() {
     return (
       <div className="random-pastrami">
-        <button onClick={e => this.handleSubmit(e)}>Get Random</button>
+        <button onClick={e => this.handleSubmit(e)}>Get Random Recommendation</button>
         {this.renderRandomPastrami()}
       </div>
     )
