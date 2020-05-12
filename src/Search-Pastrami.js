@@ -13,30 +13,31 @@ class SearchPastrami extends Component {
     this.state = {
       array: null
     }
-    this.search()
   }
 
   search() {
     // return sampleArray
-    fetch('/search-pastrami/94117')
+    fetch('/search/94117')
       .then(res => res.json())
       .then((json) => {
-        console.log(json)
-        return this.setState({array: json})
+        console.log(`Json data: ${json}`)
+        this.setState({array: json})
       })
       .catch( err => console.log(err.message))
   }
 
   renderList() {
-    const ret = this.state.array.map(({name, rating}) => {
-      return (
-        <div className="one-pastrami-from-search">
-          <h2>{name}</h2>
-          <h4>{rating}</h4>
-        </div>
-      )
-    })
-    return ret
+    this.search().then(() => {
+      const ret = this.array.map(({name, rating}) => {
+        return (
+          <div className="one-pastrami-from-search">
+            <h2>{name}</h2>
+            <h4>{rating}</h4>
+          </div>
+        )
+      })
+      return ret
+    })      
   }
 
 
