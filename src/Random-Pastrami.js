@@ -18,11 +18,12 @@ class RandomPastrami extends Component {
 
   handleSubmit(e) {
     e.preventDefault()
-    fetch('http://localhost:4000/random-pastrami/94117')
+    fetch('/random-pastrami/94117')
       .then(res => res.json())
       .then((json) => {
         this.setState({name: json.name, rating: json.rating})
       })
+      .catch( err => console.log(err.message))
   }
 
   renderRandomPastrami() {

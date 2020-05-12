@@ -1,6 +1,6 @@
 body {
   text-align: center;
-  
+
 }
 
 .App {
@@ -8,4 +8,8 @@ body {
   margin-left: 10%;
   margin-right: 10%;
   padding: 10%;
+}
+
+.center-portion {
+  padding-bottom: 50px;
 }
